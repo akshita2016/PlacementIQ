@@ -5,5 +5,19 @@
     "email": "ak@gmail.com",
     "password": "$2b$12$mA0GVepJGe6e8ClCgg72we7njldu35jR7qy/YVqE3WSLQCo5nvAum",
     "createdAt": "2026-03-09T07:40:16.379Z"
+  },
+  {
+    "id": "USER1773054471682",
+    "name": "Akshita",
+    "email": "akss@gmail.com",
+    "password": "1234567",
+    "createdAt": "2026-03-09T11:07:51.682Z"
+  },
+  {
+    "id": "USER1773119565310",
+    "name": "Akshita",
+    "email": "akshita@gmail.com",
+    "password": "1234567",
+    "createdAt": "2026-03-10T05:12:45.310Z"
   }
 ]
