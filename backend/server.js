@@ -1,27 +1,26 @@
-import express from 'express';
-import cors from 'cors';
-import dsaRoutes from './routes/dsaRoutes.js';
-import subjectRoutes from './routes/subjectRoutes.js';
-import authRoutes from './routes/authRoutes.js';
-import adminRoutes from './routes/adminRoutes.js';
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import connectDB from "./config/db.js";
+
+dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5001;
 
 app.use(cors());
 app.use(express.json());
 
-// Routes
-app.use('/auth', authRoutes);
-app.use('/admin', adminRoutes);
-app.use('/dsa', dsaRoutes);
-app.use('/subjects', subjectRoutes);
+//app.get("/test", (req, res) => {
+ // res.send("test working");
+//});
 
-// Root route
-app.get('/', (req, res) => {
-    res.send('PlacementIQ Backend API is running...');
-});
+connectDB();
 
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+import authRoutes from "./routes/authRoutes.js";
+app.use("/api/auth", authRoutes);
+
+console.log("SERVER RESTARTED");
+
+app.listen(5000, () => {
+  console.log("Server running on port 5000");
 });

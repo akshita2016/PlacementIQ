@@ -1,61 +1,42 @@
-import fs from 'fs-extra';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import User from "../models/user.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const usersFile = path.join(__dirname, '../data/users.json');
-
-// SIGNUP
 export const signup = async (req, res) => {
-    try {
-        const { name, email, password } = req.body;
-        if (!name || !email || !password) {
-            return res.status(400).json({ message: "Name, email, and password are required" });
-        }
+  try {
+    const { name, email, password } = req.body;
 
-        const users = await fs.readJson(usersFile);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-        const existingUser = users.find(user => user.email === email);
-        if (existingUser) {
-            return res.status(400).json({ message: "Email already registered" });
-        }
+    const user = new User({
+      name,
+      email,
+      password: hashedPassword,
+      profilePic: req.file?.path
+    });
 
-        const newUser = {
-            id: "USER_" + (users.length + 1),
-            name,
-            email,
-            password
-        };
+    await user.save();
 
-        users.push(newUser);
-        await fs.writeJson(usersFile, users, { spaces: 2 });
-
-        res.json({ message: "User registered successfully", user: newUser });
-    } catch (error) {
-        res.status(500).json({ message: "Error during signup", error });
-    }
+    res.json("Signup successful");
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
 };
 
-// LOGIN
 export const login = async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        if (!email || !password) {
-            return res.status(400).json({ message: "Email and password are required" });
-        }
+  try {
+    const { email, password } = req.body;
 
-        const users = await fs.readJson(usersFile);
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).json("User not found");
 
-        const user = users.find(
-            user => user.email === email && user.password === password
-        );
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) return res.status(400).json("Wrong password");
 
-        if (!user) {
-            return res.status(401).json({ message: "Invalid credentials" });
-        }
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
-        res.json({ message: "Login successful", user });
-    } catch (error) {
-        res.status(500).json({ message: "Error during login", error });
-    }
+    res.json({ token });
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
 };
