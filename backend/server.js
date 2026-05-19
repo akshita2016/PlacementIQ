@@ -12,6 +12,7 @@ import subjectRoutes from './routes/subjectRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 import resumeRoutes from './routes/resumeRoutes.js';
+import progressRoutes from './routes/progressRoutes.js';
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use('/admin', adminRoutes);
 app.use('/dsa', dsaRoutes);
 app.use('/subjects', subjectRoutes);
 app.use('/api/resume', resumeRoutes);
+app.use('/api/progress', progressRoutes);
 
 // Root route
 app.get('/', (req, res) => {

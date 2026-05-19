@@ -1,5 +1,6 @@
 import React from 'react';
 import { Zap, Play } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 const DailyChallenge = ({ challenge }) => {
   if (!challenge) return null;
@@ -33,7 +34,10 @@ const DailyChallenge = ({ challenge }) => {
           </div>
           
           <div className="w-full md:w-auto">
-            <button className="w-full md:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/25 flex items-center justify-center gap-2 group">
+            <button 
+              onClick={() => toast.success('Daily Challenge environment is launching soon!', { icon: '🚀' })}
+              className="w-full md:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/25 flex items-center justify-center gap-2 group active:scale-95"
+            >
               <Play className="w-5 h-5 group-hover:scale-110 transition-transform" />
               Solve Challenge
             </button>

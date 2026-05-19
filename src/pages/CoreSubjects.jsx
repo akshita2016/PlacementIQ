@@ -15,7 +15,7 @@ import RecentActivity from "../components/coreSubjects/RecentActivity";
 import FooterCTA from "../components/coreSubjects/FooterCTA";
 
 const CoreSubjects = () => {
-  const { subjects, dailyChallenge, stats, recent, loading, error } = useCoreSubjects();
+  const { subjects, dailyChallenge, stats, recent, loading, error, totalMastered, overallProgressPercentage } = useCoreSubjects();
 
   // Scroll to top on mount
   useEffect(() => {
@@ -44,7 +44,7 @@ const CoreSubjects = () => {
       </div>
 
       <div id="overview">
-        <HeroSection />
+        <HeroSection totalMastered={totalMastered} overallProgressPercentage={overallProgressPercentage} />
       </div>
       
       <ProgressOverview />
@@ -71,7 +71,10 @@ const CoreSubjects = () => {
             <div className="p-4 bg-blue-500/10 border border-blue-500/20 rounded-2xl">
               <div className="text-xs font-bold text-blue-400 uppercase tracking-wide mb-1">DSA</div>
               <div className="text-white font-semibold mb-3">Binary Search Trees - Insertion</div>
-              <button className="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors">
+              <button 
+                onClick={() => window.location.href = '/dsa'}
+                className="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors active:scale-95"
+              >
                 Resume Topic &rarr;
               </button>
             </div>
