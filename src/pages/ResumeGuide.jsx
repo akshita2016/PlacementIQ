@@ -1,8 +1,15 @@
 import React, { useEffect } from 'react';
 import '../styles/theme.css';
 import PageContainer from '../components/ui/PageContainer';
-import SectionContainer from '../components/ui/SectionContainer';
-import SectionHeading from '../components/ui/SectionHeading';
+import ResumeHero from '../components/resume/ResumeHero';
+import ATSPreview from '../components/resume/ATSPreview';
+import ResumeTemplates from '../components/resume/ResumeTemplates';
+import ResumeBuilderSteps from '../components/resume/ResumeBuilderSteps';
+import RecruiterInsights from '../components/resume/RecruiterInsights';
+import CommonMistakes from '../components/resume/CommonMistakes';
+import ResumeAnalyzer from '../components/resume/ResumeAnalyzer';
+import ResumeStats from '../components/resume/ResumeStats';
+import ResumeCTA from '../components/resume/ResumeCTA';
 
 const ResumeGuide = () => {
   useEffect(() => {
@@ -11,16 +18,15 @@ const ResumeGuide = () => {
 
   return (
     <PageContainer>
-      <SectionContainer className="pt-32">
-        <SectionHeading 
-          title="Build ATS-Friendly Resumes" 
-          subtitle="Get shortlisted faster with recruiter-approved resume strategies."
-          centered
-        />
-        <div className="text-center text-slate-400 mt-20">
-          <p>Resume builder tools coming soon...</p>
-        </div>
-      </SectionContainer>
+      <ResumeHero />
+      <ATSPreview />
+      <ResumeTemplates />
+      <ResumeBuilderSteps />
+      <RecruiterInsights />
+      <CommonMistakes />
+      <ResumeAnalyzer />
+      <ResumeStats />
+      <ResumeCTA />
     </PageContainer>
   );
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AppLayout from './layouts/AppLayout';
 import Home from './pages/Home';
+import HomeOld from './pages/HomeOld';
 import DSA from './pages/DSA';
 import Subjects from './pages/Subjects';
 import CoreSubjects from './pages/CoreSubjects';
@@ -22,6 +23,7 @@ function App() {
         <AppLayout>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/home-old" element={<HomeOld />} />
             <Route path="/dsa" element={<DSA />} />
             <Route path="/subjects-old" element={<Subjects />} />
             <Route path="/subjects" element={<CoreSubjects />} />
