@@ -1,0 +1,78 @@
+/* 
+  Global Dark Theme Styles
+  Currently applied locally, will be moved to index.css in Phase 6.
+*/
+
+:root {
+  /* Colors */
+  --bg-primary: #020617;
+  --bg-secondary: #0f172a;
+  --bg-card: #111827;
+  
+  --border-primary: #1e293b;
+  --border-secondary: rgba(255, 255, 255, 0.1);
+  
+  --brand-primary: #2563eb;
+  --brand-accent: #8b5cf6;
+  
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+}
+
+/* Base resets for the theme */
+.dark-theme-wrapper {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  selection: background-color rgba(37, 99, 235, 0.3);
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-secondary);
+}
+
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Gradients */
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right, #ffffff, #bfdbfe, #94a3b8);
+}
+
+.text-gradient-brand {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right, var(--brand-primary), var(--brand-accent));
+}
+
+/* Custom Dark Scrollbar */
+.dark-theme-wrapper ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.dark-theme-wrapper ::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+.dark-theme-wrapper ::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
+}
+
+.dark-theme-wrapper ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
