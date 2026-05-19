@@ -47,7 +47,7 @@ const CoreSubjects = () => {
         <HeroSection totalMastered={totalMastered} overallProgressPercentage={overallProgressPercentage} />
       </div>
       
-      <ProgressOverview />
+      <ProgressOverview subjects={subjects} />
       
       <SubjectGrid subjects={subjects} />
       
