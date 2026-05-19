@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Clock, HelpCircle, ArrowRight } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 const MockTests = () => {
   const tests = [
@@ -9,6 +10,10 @@ const MockTests = () => {
     { title: "Networks Essentials", questions: 20, time: 15, level: "Easy" },
   ];
 
+  const handleStartTest = () => {
+    toast('Mock test engine is currently being upgraded. Check back soon!', { icon: '⚙️' });
+  };
+
   return (
     <section className="py-12 max-w-7xl mx-auto px-6 lg:px-8" id="tests">
       <div className="flex justify-between items-end mb-8">
@@ -16,7 +21,12 @@ const MockTests = () => {
           <h2 className="text-2xl font-bold text-white mb-2">Mock Tests</h2>
           <p className="text-slate-400 text-sm">Test your knowledge under time pressure.</p>
         </div>
-        <button className="hidden sm:block text-sm font-medium text-blue-400 hover:text-blue-300">View All Tests &rarr;</button>
+        <button 
+          onClick={handleStartTest}
+          className="hidden sm:block text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
+        >
+          View All Tests &rarr;
+        </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -24,7 +34,8 @@ const MockTests = () => {
           <motion.div 
             key={idx}
             whileHover={{ y: -5 }}
-            className="bg-slate-900 border border-slate-800 rounded-2xl p-6 group cursor-pointer hover:border-blue-500/30 transition-colors"
+            onClick={handleStartTest}
+            className="bg-slate-900 border border-slate-800 rounded-2xl p-6 group cursor-pointer hover:border-blue-500/30 transition-colors active:scale-95"
           >
             <h3 className="text-lg font-bold text-white mb-4">{test.title}</h3>
             

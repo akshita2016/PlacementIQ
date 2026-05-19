@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { PlayCircle, Map } from 'lucide-react';
 
-const HeroSection = () => {
+const HeroSection = ({ totalMastered = 0, overallProgressPercentage = 0 }) => {
   return (
     <div className="relative pt-32 pb-20 px-6 lg:px-8 overflow-hidden">
       {/* Background Effects */}
@@ -29,11 +29,17 @@ const HeroSection = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <button className="w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 flex items-center justify-center gap-2 group">
+            <button 
+              onClick={() => document.getElementById('subjects')?.scrollIntoView({ behavior: 'smooth' })}
+              className="w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-50 text-white font-bold rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 flex items-center justify-center gap-2 group"
+            >
               <PlayCircle className="w-5 h-5 group-hover:scale-110 transition-transform" />
               Start Learning
             </button>
-            <button className="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-2xl transition-all duration-300 border border-white/10 flex items-center justify-center gap-2 backdrop-blur-md">
+            <button 
+              onClick={() => document.getElementById('roadmap')?.scrollIntoView({ behavior: 'smooth' })}
+              className="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-2xl transition-all duration-300 border border-white/10 flex items-center justify-center gap-2 backdrop-blur-md"
+            >
               <Map className="w-5 h-5" />
               View Roadmap
             </button>
@@ -43,8 +49,8 @@ const HeroSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {[
               { label: "Day Streak", value: "🔥 18" },
-              { label: "Topics Mastered", value: "📘 124" },
-              { label: "Overall Progress", value: "🎯 82%" }
+              { label: "Topics Mastered", value: `📘 ${totalMastered}` },
+              { label: "Overall Progress", value: `🎯 ${overallProgressPercentage}%` }
             ].map((stat, idx) => (
               <motion.div 
                 key={idx}

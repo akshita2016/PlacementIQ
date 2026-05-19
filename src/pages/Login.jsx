@@ -28,6 +28,11 @@ function Login() {
             if (res.ok) {
                 localStorage.setItem("token", data.token);
                 localStorage.setItem("user", JSON.stringify(data.user));
+                
+                // Show JWT token in console for demo purposes
+                console.log("✅ SUCCESS: Logged in and JWT Token received!");
+                console.log("JWT Token:", data.token);
+                
                 window.location.href = "/";
             } else {
                 alert(data.message || "Login failed");

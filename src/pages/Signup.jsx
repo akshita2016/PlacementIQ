@@ -27,8 +27,16 @@ function Signup() {
             const data = await res.json();
             
             if (res.ok) {
-                alert("Account created successfully! Please login.");
-                window.location.href = "/login";
+                // Save token and user data to automatically log in
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("user", JSON.stringify(data.user));
+                
+                // Show JWT token in console for demo purposes to sir
+                console.log("✅ SUCCESS: JWT Token received!");
+                console.log("JWT Token:", data.token);
+                
+                alert("Account created successfully! You are now logged in.");
+                window.location.href = "/";
             } else {
                 alert(data.message || "Signup failed");
             }

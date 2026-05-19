@@ -8,6 +8,9 @@ import HomeOld from './pages/HomeOld';
 import DSA from './pages/DSA';
 import Subjects from './pages/Subjects';
 import CoreSubjects from './pages/CoreSubjects';
+import SubjectDetail from './pages/subjects/SubjectDetail';
+import TopicDetail from './pages/subjects/TopicDetail';
+import QuestionPage from './pages/subjects/QuestionPage';
 import Resume from './pages/Resume';
 import ResumeGuide from './pages/ResumeGuide';
 import Interview from './pages/Interview';
@@ -32,6 +35,9 @@ function App() {
             <Route path="/dsa" element={<DSA />} />
             <Route path="/subjects-old" element={<Subjects />} />
             <Route path="/subjects" element={<CoreSubjects />} />
+            <Route path="/subjects/:subjectId" element={<SubjectDetail />} />
+            <Route path="/subjects/:subjectId/topic/:topicId" element={<TopicDetail />} />
+            <Route path="/subjects/:subjectId/topic/:topicId/question/:questionId" element={<QuestionPage />} />
             <Route path="/resume-old" element={<Resume />} />
             <Route path="/resume" element={<ResumeGuide />} />
             <Route path="/resume-builder" element={<ResumeBuilder />} />

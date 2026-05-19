@@ -25,7 +25,17 @@ export const signup = async (req, res) => {
 
         await newUser.save();
 
-        res.status(201).json({ message: "User registered successfully", user: { id: newUser._id, name: newUser.name, email: newUser.email } });
+        const token = jwt.sign(
+            { userId: newUser._id },
+            process.env.JWT_SECRET,
+            { expiresIn: "7d" }
+        );
+
+        res.status(201).json({ 
+            message: "User registered successfully", 
+            token,
+            user: { id: newUser._id, name: newUser.name, email: newUser.email } 
+        });
     } catch (error) {
         console.error("Signup error:", error);
         res.status(500).json({ message: "Error during signup", error: error.message });

@@ -14,7 +14,10 @@ const FooterCTA = () => {
           Stop memorizing. Start understanding. Your dream company is just a few concepts away.
         </p>
         
-        <button className="px-8 py-4 bg-white text-blue-600 font-bold rounded-2xl hover:bg-blue-50 transition-colors hover:shadow-xl hover:shadow-white/20 flex items-center justify-center gap-2 mx-auto relative z-10">
+        <button 
+          onClick={() => document.getElementById('subjects')?.scrollIntoView({ behavior: 'smooth' })}
+          className="px-8 py-4 bg-white text-blue-600 font-bold rounded-2xl hover:bg-blue-50 transition-colors hover:shadow-xl hover:shadow-white/20 flex items-center justify-center gap-2 mx-auto relative z-10 active:scale-95"
+        >
           Start Preparation <ArrowRight className="w-5 h-5" />
         </button>
       </div>

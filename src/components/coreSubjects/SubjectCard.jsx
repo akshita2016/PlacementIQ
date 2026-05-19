@@ -2,7 +2,19 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, BookOpen, Layers } from 'lucide-react';
 
+import { useNavigate } from 'react-router-dom';
+
 const SubjectCard = ({ subject, index }) => {
+  const navigate = useNavigate();
+
+  const handleContinue = () => {
+    if (subject.title.toLowerCase().includes('data structures')) {
+      navigate('/dsa');
+    } else {
+      navigate(`/subjects/${subject.id}`);
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -56,7 +68,10 @@ const SubjectCard = ({ subject, index }) => {
           </div>
         </div>
 
-        <button className="w-full mt-4 py-3 bg-white/5 hover:bg-white/10 border border-white/5 text-white font-semibold rounded-xl flex items-center justify-center gap-2 transition-colors">
+        <button 
+          onClick={handleContinue}
+          className="w-full mt-4 py-3 bg-white/5 hover:bg-white/10 border border-white/5 text-white font-semibold rounded-xl flex items-center justify-center gap-2 transition-colors active:scale-95"
+        >
           Continue Learning <ArrowRight className="w-4 h-4" />
         </button>
       </div>
