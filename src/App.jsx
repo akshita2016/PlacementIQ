@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import { LanguageProvider } from './contexts/LanguageContext';
 import AppLayout from './layouts/AppLayout';
 import Home from './pages/Home';
 import HomeOld from './pages/HomeOld';
@@ -21,6 +22,7 @@ import ResumeHistory from "./pages/ResumeHistory";
 
 function App() {
   return (
+    <LanguageProvider>
     <Router>
       <div className="App">
         <AppLayout>
@@ -68,6 +70,7 @@ function App() {
         />
       </div>
     </Router>
+    </LanguageProvider>
   );
 }
 

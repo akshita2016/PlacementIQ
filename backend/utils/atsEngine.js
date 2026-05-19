@@ -1,4 +1,7 @@
-import pdf from 'pdf-parse/lib/pdf-parse.js';
+import fs from 'fs';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const pdfParse = require('pdf-parse');
 
 /**
  * ATS Resume Analysis Engine
@@ -8,7 +11,7 @@ import pdf from 'pdf-parse/lib/pdf-parse.js';
 // ─── Text Extraction ───────────────────────────────────────────
 export async function extractText(pdfBuffer) {
   try {
-    const data = await pdf(pdfBuffer);
+    const data = await pdfParse(pdfBuffer);
     return data.text || '';
   } catch (err) {
     throw new Error('Failed to parse PDF. Please ensure it is a valid PDF file.');
