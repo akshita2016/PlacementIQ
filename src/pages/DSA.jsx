@@ -5,10 +5,12 @@ import {
   Trophy, RotateCcw, TrendingUp, Filter
 } from 'lucide-react';
 import { DSA_TOPICS } from '../data/dsaData';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const STORAGE_KEY = 'placementiq_dsa_solved';
 
 function DSA() {
+  const { tp } = useLanguage();
   const [selectedTopic, setSelectedTopic] = useState(null);
   const [dsaTopics, setDsaTopics] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -87,9 +89,9 @@ function DSA() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
       {/* Header */}
       <header className="py-12 text-center">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">DSA Practice Sheet</h1>
+        <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">{tp('dsa.title')}</h1>
         <p className="text-xl text-gray-500 max-w-2xl mx-auto">
-          Master Data Structures and Algorithms with our curated problem sets and step-by-step guidance.
+          {tp('dsa.subtitle')}
         </p>
       </header>
 
@@ -104,14 +106,14 @@ function DSA() {
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <TrendingUp className="w-5 h-5 text-blue-200" />
-                <span className="text-blue-200 text-sm font-semibold uppercase tracking-widest">Overall Progress</span>
+                <span className="text-blue-200 text-sm font-semibold uppercase tracking-widest">{tp('dsa.progress')}</span>
               </div>
               <p className="text-4xl font-extrabold">
                 {totalSolved}
                 <span className="text-blue-300 text-2xl font-bold"> / {totalProblems}</span>
                 <span className="ml-3 text-2xl font-bold text-blue-200">({overallPct}%)</span>
               </p>
-              <p className="text-blue-200 mt-1 text-sm">problems solved</p>
+              <p className="text-blue-200 mt-1 text-sm">{tp('dsa.solved')}</p>
             </div>
 
             <div className="flex items-center gap-6">
@@ -159,7 +161,7 @@ function DSA() {
         {/* Difficulty filter buttons */}
         <div className="flex items-center gap-2 flex-wrap">
           <Filter className="w-4 h-4 text-gray-400" />
-          <span className="text-sm font-semibold text-gray-500 mr-1">Filter:</span>
+          <span className="text-sm font-semibold text-gray-500 mr-1">{tp('dsa.filter')}</span>
           {[
             { key: 'all', label: 'All', active: 'bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/25' },
             { key: 'easy', label: 'Easy', active: 'bg-green-500 text-white border-green-500' },
@@ -190,7 +192,7 @@ function DSA() {
             className="flex items-center gap-2 text-sm font-semibold text-gray-400 hover:text-red-500 transition-colors px-3 py-2 rounded-xl hover:bg-red-50"
           >
             <RotateCcw className="w-4 h-4" />
-            Reset Progress
+            {tp('dsa.reset')}
           </button>
         )}
       </div>
@@ -267,7 +269,7 @@ function DSA() {
 
                 <div className="flex items-center gap-4 flex-shrink-0">
                   <span className="hidden sm:block text-sm font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full italic">
-                    {selectedTopic === topic ? 'Minimize' : 'Explore Problems'}
+                    {selectedTopic === topic ? tp('dsa.minimize') : tp('dsa.explore')}
                   </span>
                   {selectedTopic === topic
                     ? <ChevronUp className="w-5 h-5 text-gray-400" />
@@ -384,15 +386,15 @@ function DSA() {
       {/* ── Study Tips Section ── */}
       <section className="mt-24">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900">Study Tips for Success</h2>
-          <p className="text-gray-500 mt-2">Maximum efficiency for your prep journey</p>
+          <h2 className="text-3xl font-bold text-white">{ tp('dsa.tips_title')}</h2>
+          <p className="text-gray-500 mt-2">{tp('dsa.tips_sub')}</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
-            { title: 'Start with Basics', icon: Target, text: 'Begin with Arrays and Strings before moving to complex data structures.' },
-            { title: 'Practice Daily', icon: Clock, text: 'Solve at least 2-3 problems daily to build long-term consistency.' },
-            { title: 'Review Solutions', icon: Lightbulb, text: 'Always review multiple approaches and optimize your time/space complexity.' },
-            { title: 'Time Yourself', icon: Code, text: 'Practice solving problems within interview time constraints (30-45 mins).' },
+            { title: tp('dsa.tip1_title'), icon: Target, text: tp('dsa.tip1') },
+            { title: tp('dsa.tip2_title'), icon: Clock, text: tp('dsa.tip2') },
+            { title: tp('dsa.tip3_title'), icon: Lightbulb, text: tp('dsa.tip3') },
+            { title: tp('dsa.tip4_title'), icon: Code, text: tp('dsa.tip4') },
           ].map((tip, i) => (
             <div key={i} className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
               <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-4">

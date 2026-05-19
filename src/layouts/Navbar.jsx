@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, Rocket, LogIn, UserPlus, ChevronDown, User, Settings, LogOut, LayoutDashboard } from 'lucide-react';
 import GradientButton from '../components/ui/GradientButton';
+import LanguageSelector from '../components/ui/LanguageSelector';
 import MobileMenu from './MobileMenu';
+import { useLanguage } from '../contexts/LanguageContext';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,6 +13,7 @@ function Navbar() {
   const [user, setUser] = useState(null);
   const dropdownRef = useRef(null);
   const location = useLocation();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -48,11 +51,11 @@ function Navbar() {
   const isActive = (path) => location.pathname === path;
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'DSA Sheet', path: '/dsa' },
-    { name: 'Core Subjects', path: '/subjects' },
-    { name: 'Resume Guide', path: '/resume' },
-    { name: 'Interview Questions', path: '/interview' },
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.dsa'), path: '/dsa' },
+    { name: t('nav.subjects'), path: '/subjects' },
+    { name: t('nav.resume'), path: '/resume' },
+    { name: t('nav.interview'), path: '/interview' },
   ];
 
   const avatarLetter = user?.name ? user.name[0].toUpperCase() : '?';
@@ -82,7 +85,7 @@ function Navbar() {
             <div className="hidden md:flex items-center space-x-1 border border-slate-800 bg-[#0F172A]/50 backdrop-blur-md px-2 py-1.5 rounded-2xl">
               {navLinks.map((link) => (
                 <Link
-                  key={link.name}
+                  key={link.path}
                   to={link.path}
                   className={`relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 ${
                     isActive(link.path) 
@@ -98,8 +101,11 @@ function Navbar() {
               ))}
             </div>
 
-            {/* Auth Section */}
-            <div className="hidden md:flex items-center space-x-4">
+            {/* Auth Section + Language Selector */}
+            <div className="hidden md:flex items-center space-x-2">
+              {/* Language Selector */}
+              <LanguageSelector />
+
               {user ? (
                 /* Profile Dropdown */
                 <div className="relative" ref={dropdownRef}>
@@ -130,19 +136,19 @@ function Navbar() {
 
                       <div className="py-1 px-2 space-y-1">
                         <Link to="/dashboard" onClick={() => setDropdownOpen(false)} className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-300 rounded-xl hover:bg-slate-800 hover:text-white transition-colors">
-                          <LayoutDashboard className="w-4 h-4 text-blue-400" /> Dashboard
+                          <LayoutDashboard className="w-4 h-4 text-blue-400" /> {t('nav.dashboard')}
                         </Link>
                         <Link to="#" onClick={() => setDropdownOpen(false)} className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-300 rounded-xl hover:bg-slate-800 hover:text-white transition-colors">
-                          <User className="w-4 h-4 text-purple-400" /> Profile
+                          <User className="w-4 h-4 text-purple-400" /> {t('nav.profile')}
                         </Link>
                         <Link to="#" onClick={() => setDropdownOpen(false)} className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-300 rounded-xl hover:bg-slate-800 hover:text-white transition-colors">
-                          <Settings className="w-4 h-4 text-emerald-400" /> Settings
+                          <Settings className="w-4 h-4 text-emerald-400" /> {t('nav.settings')}
                         </Link>
                       </div>
 
                       <div className="border-t border-slate-800/50 mt-2 pt-2 px-2">
                         <button onClick={handleLogout} className="w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-red-400 rounded-xl hover:bg-red-500/10 hover:text-red-300 transition-colors">
-                          <LogOut className="w-4 h-4" /> Sign Out
+                          <LogOut className="w-4 h-4" /> {t('nav.signout')}
                         </button>
                       </div>
                     </div>
@@ -151,11 +157,11 @@ function Navbar() {
               ) : (
                 <div className="flex items-center gap-3">
                   <Link to="/login" className="px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors flex items-center gap-2">
-                    <LogIn className="w-4 h-4" /> Login
+                    <LogIn className="w-4 h-4" /> {t('nav.login')}
                   </Link>
                   <Link to="/signup">
                     <GradientButton className="px-6 py-2.5 text-sm" icon={<UserPlus className="w-4 h-4" />}>
-                      Sign Up
+                      {t('nav.signup')}
                     </GradientButton>
                   </Link>
                 </div>
