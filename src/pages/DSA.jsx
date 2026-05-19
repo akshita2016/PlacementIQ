@@ -87,7 +87,7 @@ function DSA() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
       {/* Header */}
       <header className="py-12 text-center">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">DSA Practice Sheet</h1>
+        <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">DSA Practice Sheet</h1>
         <p className="text-xl text-gray-500 max-w-2xl mx-auto">
           Master Data Structures and Algorithms with our curated problem sets and step-by-step guidance.
         </p>

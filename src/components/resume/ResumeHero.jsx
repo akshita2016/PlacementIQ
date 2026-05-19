@@ -1,9 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FileText, Eye, Upload } from 'lucide-react';
+import { Eye, Upload } from 'lucide-react';
 import GradientButton from '../ui/GradientButton';
 
 const ResumeHero = () => {
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="relative pt-32 pb-20 overflow-hidden">
       {/* Glow Effects */}
@@ -33,10 +37,17 @@ const ResumeHero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <GradientButton icon={<Upload className="w-5 h-5" />} className="w-full sm:w-auto !bg-emerald-600 hover:!bg-emerald-500 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+            <GradientButton 
+              onClick={() => scrollTo('analyzer')}
+              icon={<Upload className="w-5 h-5" />} 
+              className="w-full sm:w-auto !bg-emerald-600 hover:!bg-emerald-500 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]"
+            >
               Analyze Resume
             </GradientButton>
-            <button className="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-2xl transition-all duration-300 border border-white/10 flex items-center justify-center gap-2 backdrop-blur-md">
+            <button 
+              onClick={() => scrollTo('templates')}
+              className="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-2xl transition-all duration-300 border border-white/10 flex items-center justify-center gap-2 backdrop-blur-md"
+            >
               <Eye className="w-5 h-5" />
               View Templates
             </button>

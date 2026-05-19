@@ -20,11 +20,15 @@ const ResumeGuide = () => {
     <PageContainer>
       <ResumeHero />
       <ATSPreview />
-      <ResumeTemplates />
+      <div id="templates">
+        <ResumeTemplates />
+      </div>
       <ResumeBuilderSteps />
       <RecruiterInsights />
       <CommonMistakes />
-      <ResumeAnalyzer />
+      <div id="analyzer">
+        <ResumeAnalyzer />
+      </div>
       <ResumeStats />
       <ResumeCTA />
     </PageContainer>

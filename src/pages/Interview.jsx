@@ -84,7 +84,7 @@ function Interview() {
           <Zap className="w-3.5 h-3.5" />
           {interviewData.length} Questions · Strategy · Sample Answers · Practice Mode
         </div>
-        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
           Interview Prep
           <span className="block bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 mt-1">
             That Actually Prepares You
